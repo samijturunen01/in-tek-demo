@@ -45,12 +45,13 @@ _Last updated: 2026-11-18_
 - `tsc -b` ✔, `eslint .` ✔, `npm run build` ✔ (12 routes prerendered)
 - Playwright: **101 passed, 3 skipped** (desktop 1440 + Pixel 7). Covers all pages (no console errors, no overflow, images load), navigation (Etusivu first, active item, top-of-page on menu navigation, back/forward restore, anchors, deep links, 404), intro (plays on load and refresh, not on in-app return or back, reduced motion, no CLS), forms, slip print, gallery, map, tel/mailto, no trackers or cookies, and axe WCAG 2.2 AA (no serious or critical issues).
 - Visual review at 360 / 390 / 768 / 1024 / 1440 px.
-- Lab performance (`scripts/perf-lab.mjs`, uncompressed local server, 4× CPU + ~1.6 Mbps): CLS ≤ 0.003; LCP about 2.0–2.6 s on subpages and about 2.6 s on the homepage with mobile throttling. These are lab numbers, not field data.
+- Lab performance on the **live** site (`scripts/perf-lab.mjs`, ~1.6 Mbps / 150 ms RTT, 4× CPU on mobile): mobile LCP 1.5–1.8 s, desktop LCP 1.2–2.1 s, CLS ≤ 0.003, about 350–490 kB transferred per page. Lab numbers only. Real-user Core Web Vitals need field data after launch.
 
 ## Known issues / notes
 
 - Saira variable font (wdth axis) is about 99 kB (latin); acceptable, but it could be subset further.
-- Chrome reports SVG text in the hero cluster as an LCP candidate. It paints at first render, so this has no impact.
+- Chrome reports SVG text in the hero cluster as an LCP candidate. It paints at first render, so LCP = FCP on the live site.
+- GitHub Actions warns that `actions/deploy-pages@v4` targets Node 20 (forced to Node 24). This is harmless; bump the action versions when v5 is available.
 - Google rating (4.4 / 69, 11/2026) must be refreshed or removed before production.
 
 ## Asset permissions
@@ -59,7 +60,9 @@ Authentic photos from the company's own key site are used under the customer aut
 
 ## Deployment status
 
-See the bottom of this file (updated after deployment).
+- **Deployed 2026-11-18** with GitHub Actions (`.github/workflows/deploy.yml`: lint → build + prerender → Playwright → Pages). CI run: build ✔ (101 tests passed in CI), deploy ✔.
+- Live checks: pages 200, unknown URL → branded 404 (status 404), HTTPS + HSTS, `noindex, nofollow` on every page, robots.txt `Allow: /`.
+- **Full Playwright suite against the live URL: 101 passed, 3 skipped** (`LIVE_URL=https://samijturunen01.github.io npx playwright test`).
 
 ## Next recommended actions
 

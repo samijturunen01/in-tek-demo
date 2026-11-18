@@ -19,6 +19,7 @@ Research date: 2026-11-18. Everything shown on the demo site comes from the sour
 | S11 | Sister site (company-owned) | https://www.auton-avaimet-joensuu.fi/ (+ /tietoa-meista/, /kuvagalleria/, /yhteystiedot/) | "Since 2008", private and business customers, key services, authentic photos, Instagram |
 | S12 | Finnish Trade Register (PRH/YTJ open data) | https://avoindata.prh.fi/opendata-ytj-api/v3/companies?businessId=2233329-5 | Official name, business ID, company history, industry |
 | S13 | OpenStreetMap Nominatim | Kuurnankatu 40, 80130 Joensuu | Coordinates 62.61854, 29.73852 (commercial building, Käpykangas) |
+| S14 | Google Maps business listing (seen in the keyless embed for "in-TEK Oy, Kuurnankatu 40, 80130 Joensuu") | maps.google.com | Listing "in-Tek Oy", rating **4.4 / 5, 69 reviews** on 18.11.2026; pin on Kuurnankatu 40 |
 
 ## Verified company facts
 
@@ -67,7 +68,12 @@ Research date: 2026-11-18. Everything shown on the demo site comes from the sour
 8. **English version:** the sister site has /en/. Whether an English version is needed is to be confirmed.
 9. **Facebook:** no company Facebook page was found (the "Facebook" text on in-tek.fi is a theme string).
 10. **Contact person / owner name:** not published. Not shown.
-11. **Domain:** the key service runs at a separate domain (auton-avaimet-joensuu.fi). Recommendation: consolidate under in-tek.fi in production, or keep both and cross-link (CONFIRM).
+11. **Google rating** (S14) is shown as "4,4 / 5 Google-arvioissa (69 arviota, 11/2026)" with a link to Google. It is not in structured data. Update the figure or remove it before production.
+12. **ABS faults:** the original lists "Paalupumpun/ABS-pumpun ohjausvika"; "paalupumppu" looks like a typo, so the demo says "ABS-pumpun ohjausvika".
+13. **Crash data reset is not under warranty**: this comes only from the 2019 PDF and is shown in the terms. Confirm.
+14. **Shipping address for mail-in units** is not published. The demo tells customers to confirm shipping instructions when they make contact, and does not label Kuurnankatu 40 as the shipping address.
+15. **"Mistä päin Suomea tahansa" / nationwide mail-in** is an inference from the Matkahuolto/Posti instructions. Confirm.
+16. **Domain:** the key service runs at a separate domain (auton-avaimet-joensuu.fi). Recommendation: consolidate under in-tek.fi in production, or keep both and cross-link (CONFIRM).
 
 ## Competitors reviewed (for differentiation only – nothing copied)
 

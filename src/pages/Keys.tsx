@@ -115,7 +115,7 @@ export function Keys() {
       </section>
 
       {/* Gallery */}
-      <section id="avaintyot" className="scroll-mt-20 border-b border-line bg-ink-2">
+      <section id="avaintyot" className="border-b border-line bg-ink-2">
         <div className="wrap py-20 lg:py-24">
           <div className="grid gap-6 lg:grid-cols-12 lg:items-end" data-reveal>
             <div className="lg:col-span-7">

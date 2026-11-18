@@ -79,7 +79,7 @@ export function MailIn() {
       </section>
 
       {/* Slip generator */}
-      <section id="huoltolahete" className="on-light scroll-mt-20 bg-paper text-graphite">
+      <section id="huoltolahete" className="on-light bg-paper text-graphite">
         <div className="wrap grid gap-10 py-20 lg:grid-cols-12 lg:py-24">
           <div className="lg:col-span-4" data-reveal>
             <p className="eyebrow">Huoltolähete verkossa</p>

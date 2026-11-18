@@ -12,8 +12,9 @@ export function Footer() {
     <footer className="relative border-t border-line bg-ink-2 pb-28 text-mist lg:pb-0">
       <div className="wrap grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-12 lg:py-20">
         <div className="lg:col-span-4">
-          <Link to="/" className="inline-flex text-chalk" aria-label="in-TEK – etusivu">
+          <Link to="/" className="inline-flex text-chalk">
             <Wordmark className="text-[40px]" />
+            <span className="sr-only"> – etusivu</span>
           </Link>
           <p className="mt-5 max-w-sm text-[0.98rem] leading-relaxed">
             Autoelektroniikan ja autonavainten korjaukset merkistä riippumatta – Joensuussa ja postitse. Vuodesta {company.foundedYear}.

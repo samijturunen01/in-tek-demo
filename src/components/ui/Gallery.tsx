@@ -42,7 +42,7 @@ export function Gallery() {
             }`}
           >
             {b}
-            <span className={`ml-2 font-mono text-[0.8rem] ${brand === b ? 'text-ink/70' : 'text-fog'}`}>
+            <span className={`ml-2 font-mono text-[0.8rem] ${brand === b ? 'text-ink' : 'text-fog'}`}>
               {b === 'Kaikki' ? photos.length : counts[b]}
             </span>
           </button>
@@ -61,15 +61,15 @@ export function Gallery() {
                 type="button"
                 onClick={() => show(i)}
                 className="group relative block w-full overflow-hidden rounded-xl bg-ink-3 text-left"
-                aria-label={`Avaa kuva: ${p.alt}`}
               >
+                <span className="sr-only">Avaa suurempana: </span>
                 <img
                   src={photoSrc(p.id, 480)}
                   srcSet={photoSrcSet(p.id)}
                   sizes="(min-width: 1024px) 22vw, (min-width: 768px) 30vw, 48vw"
                   width={m.w}
                   height={m.h}
-                  alt=""
+                  alt={p.alt}
                   loading="lazy"
                   decoding="async"
                   className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]"

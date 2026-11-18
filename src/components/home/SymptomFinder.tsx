@@ -43,7 +43,7 @@ export function SymptomFinder({ headingLevel = 2 }: { headingLevel?: 2 | 3 }) {
   }
 
   return (
-    <section id="merkkivalot" className="relative scroll-mt-20 border-b border-line bg-ink-2">
+    <section id="merkkivalot" className="relative border-b border-line bg-ink-2">
       <div className="wrap py-20 lg:py-28">
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end" data-reveal>
           <div className="lg:col-span-7">

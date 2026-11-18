@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight, Menu, Phone, X } from 'lucide-react'
 import { Wordmark } from '../brand/Wordmark'
 import { mainNav, inquiryHref } from '../../data/nav'
@@ -69,21 +69,23 @@ export function Header() {
   }, [open])
 
   return (
+    <>
     <header
       className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
         scrolled || open ? 'border-line bg-ink/95 backdrop-blur-md' : 'border-transparent bg-ink'
       }`}
     >
       <div className="wrap flex h-[68px] items-center justify-between gap-4 lg:h-[76px]">
-        <Link to="/" className="-m-2 flex items-center rounded-md p-2 text-chalk" aria-label="in-TEK – etusivu">
+        <Link to="/" className="-m-2 flex items-center rounded-md p-2 text-chalk">
           <Wordmark className="text-[30px] lg:text-[34px]" />
+          <span className="sr-only"> – etusivu</span>
         </Link>
 
         <nav aria-label="Päävalikko" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
               <li key={item.to}>
-                <NavLink
+                <Link
                   to={item.to}
                   aria-current={isActive(item.to) ? 'page' : undefined}
                   className={`relative block rounded-md px-3 py-2 text-[0.97rem] font-semibold transition-colors ${
@@ -97,7 +99,7 @@ export function Header() {
                       isActive(item.to) ? 'opacity-100' : 'opacity-0'
                     }`}
                   />
-                </NavLink>
+                </Link>
               </li>
             ))}
           </ul>
@@ -141,18 +143,19 @@ export function Header() {
         </div>
       </div>
 
+    </header>
       {/* Mobile menu */}
       <div
         id={menuId}
         ref={panelRef}
         hidden={!open}
-        className="fixed inset-x-0 bottom-0 top-[68px] overflow-y-auto border-t border-line bg-ink lg:hidden"
+        className="fixed inset-x-0 bottom-0 top-[68px] z-[45] overflow-y-auto border-t border-line bg-ink lg:hidden"
       >
         <nav aria-label="Mobiilivalikko" className="wrap pb-32 pt-4">
           <ul className="divide-y divide-line border-b border-line">
             {mainNav.map((item) => (
               <li key={item.to}>
-                <NavLink
+                <Link
                   to={item.to}
                   aria-current={isActive(item.to) ? 'page' : undefined}
                   className={`flex min-h-14 items-center justify-between py-3 font-display text-[1.7rem] font-bold [font-stretch:84%] ${
@@ -161,7 +164,7 @@ export function Header() {
                 >
                   {item.label}
                   {isActive(item.to) ? <span className="h-2 w-2 rounded-full bg-signal shadow-[0_0_10px_#2ca7e0]" aria-hidden="true" /> : null}
-                </NavLink>
+                </Link>
               </li>
             ))}
           </ul>
@@ -186,6 +189,6 @@ export function Header() {
           </div>
         </nav>
       </div>
-    </header>
+    </>
   )
 }

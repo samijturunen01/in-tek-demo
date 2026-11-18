@@ -58,7 +58,7 @@ export function Warranty() {
           </nav>
           <div className="max-w-3xl lg:col-span-8 lg:col-start-5">
             {termsSections.map((t) => (
-              <section key={t.id} id={t.id} className="scroll-mt-28 border-b border-graphite/12 pb-10 pt-2 [&+section]:pt-10">
+              <section key={t.id} id={t.id} className="border-b border-graphite/12 pb-10 pt-2 [&+section]:pt-10">
                 <h2 className="display-md">{t.title}</h2>
                 <div className="mt-5 grid gap-4 text-[1.04rem] text-slate">
                   {t.paragraphs.map((p) => (
@@ -67,7 +67,7 @@ export function Warranty() {
                 </div>
               </section>
             ))}
-            <section id="palvelukohtaiset" className="scroll-mt-28 pt-10">
+            <section id="palvelukohtaiset" className="pt-10">
               <h2 className="display-md">Palvelukohtaiset takuut</h2>
               <p className="mt-4 text-slate">Palvelusivuilla ilmoitetut takuuajat:</p>
               <table className="mt-5 w-full border-collapse text-left">

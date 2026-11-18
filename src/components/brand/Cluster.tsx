@@ -1,7 +1,6 @@
 import { forwardRef } from 'react'
 import type { TelltaleId } from '../../data/services'
 import { TelltalePaths } from './Telltale'
-import { Wordmark } from './Wordmark'
 
 /**
  * Signature graphic: a stylised night-time instrument cluster. Its final state
@@ -144,18 +143,51 @@ export const Cluster = forwardRef<SVGSVGElement, { className?: string }>(functio
       {/* Centre display */}
       <ellipse cx="400" cy="190" rx="150" ry="110" fill="url(#cl-glow)" className="cl-glow" />
       <rect x="302" y="88" width="196" height="196" rx="20" fill="#060b10" stroke="#22323f" strokeWidth="2" />
-      <foreignObject x="302" y="88" width="196" height="196">
-        <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-center">
-          <span className="font-mono text-[11px] font-semibold tracking-[0.18em] text-fog">AUTOELEKTRONIIKKA</span>
-          <span className="cl-wordmark text-chalk">
-            <Wordmark className="text-[46px]" />
-          </span>
-          <span className="cl-status inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold tracking-[0.14em] text-signal-2">
-            <span className="h-[7px] w-[7px] rounded-full bg-signal shadow-[0_0_8px_#2ca7e0]" />
-            EI VIKAKOODEJA
-          </span>
-        </div>
-      </foreignObject>
+      {/* Display content as native SVG text (not foreignObject: keeps the H1 as the LCP element) */}
+      <text
+        x="400"
+        y="136"
+        textAnchor="middle"
+        fill="#8597a6"
+        fontFamily="'JetBrains Mono Variable', monospace"
+        fontSize="11"
+        fontWeight="600"
+        letterSpacing="2"
+      >
+        AUTOELEKTRONIIKKA
+      </text>
+      <g className="cl-wordmark">
+        <text
+          x="400"
+          y="203"
+          textAnchor="middle"
+          fill="#ffffff"
+          fontFamily="'Saira Variable', 'Arial Narrow', sans-serif"
+          fontSize="50"
+          fontWeight="700"
+          style={{ fontStretch: '92%' }}
+        >
+          in
+          <tspan fill="#2ca7e0" stroke="#2ca7e0" strokeWidth="2.5" style={{ filter: 'drop-shadow(0 0 6px #2ca7e0)' }}>
+            -
+          </tspan>
+          TEK
+        </text>
+      </g>
+      <g className="cl-status">
+        <circle cx="342" cy="245" r="3.6" fill="#2ca7e0" style={{ filter: 'drop-shadow(0 0 4px #2ca7e0)' }} />
+        <text
+          x="352"
+          y="249"
+          fill="#5cc2f0"
+          fontFamily="'JetBrains Mono Variable', monospace"
+          fontSize="11.5"
+          fontWeight="600"
+          letterSpacing="1.6"
+        >
+          EI VIKAKOODEJA
+        </text>
+      </g>
 
       {/* Telltale row */}
       <rect x="220" y="320" width="360" height="54" rx="14" fill="#070c12" stroke="#1b2834" strokeWidth="1.5" />

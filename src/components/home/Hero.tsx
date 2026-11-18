@@ -7,6 +7,7 @@ import { inquiryHref } from '../../data/nav'
 import { gsap } from '../../lib/motion'
 import { introAllowed, prefersReducedMotion, releaseIntroHold } from '../../lib/intro'
 import { track } from '../../lib/analytics'
+import { GoogleRating } from '../ui/GoogleRating'
 
 const status = [
   { k: 'Vuodesta', v: '2008' },
@@ -93,7 +94,8 @@ export function Hero() {
               Lähetä yksikkö korjaukseen
             </Link>
           </div>
-          <p className="mt-5 text-[0.98rem] text-fog">
+          <div className="mt-5 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6">
+          <p className="text-[0.98rem] text-fog">
             Kiire? Soita{' '}
             <a
               href={company.phone.href}
@@ -104,6 +106,8 @@ export function Hero() {
               {company.phone.display}
             </a>
           </p>
+          <GoogleRating />
+          </div>
         </div>
         <div className="order-first lg:order-2 lg:col-span-5">
           <Cluster ref={clusterRef} className="mx-auto max-w-[680px] drop-shadow-[0_30px_60px_rgb(0_0_0/0.45)]" />

@@ -11,7 +11,7 @@ export function MapEmbed() {
   const [load, setLoad] = useState(false)
   return (
     <div className="overflow-hidden rounded-[22px] border border-line bg-ink-2">
-      <div className="relative aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-[21/9]">
+      <div className="relative aspect-[4/3] min-h-[360px] w-full sm:aspect-[16/10] sm:min-h-0 lg:aspect-[21/9]">
         {load ? (
           <iframe
             title={`Kartta: ${company.name}, ${fullAddress}`}

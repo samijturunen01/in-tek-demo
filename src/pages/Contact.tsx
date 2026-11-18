@@ -5,6 +5,7 @@ import { InquiryForm } from '../components/forms/InquiryForm'
 import { MapEmbed } from '../components/contact/MapEmbed'
 import { company, fullAddress } from '../data/company'
 import { track } from '../lib/analytics'
+import { GoogleRating } from '../components/ui/GoogleRating'
 
 export function Contact() {
   const tiles = [
@@ -90,7 +91,8 @@ export function Contact() {
                   <dd className="text-right font-semibold">{fullAddress}</dd>
                 </div>
               </dl>
-              <p className="mt-4 flex gap-2 text-[0.9rem] text-slate">
+              <GoogleRating tone="light" className="mt-3" />
+              <p className="mt-2 flex gap-2 text-[0.9rem] text-slate">
                 <Clock size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-signal-deep" />
                 Käynnit sovitaan puhelimitse.
               </p>

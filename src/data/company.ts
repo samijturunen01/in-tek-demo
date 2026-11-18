@@ -19,6 +19,12 @@ export const company = {
   geo: { lat: 62.61854, lon: 29.73852 },
   instagram: { handle: '@auton_avaimet', url: 'https://www.instagram.com/auton_avaimet' },
   keySite: 'https://www.auton-avaimet-joensuu.fi/',
+  /**
+   * Public Google Business Profile rating as shown by Google Maps for "in-Tek Oy,
+   * Kuurnankatu 40" on 18.11.2026. Displayed with its date and a link to the source –
+   * never in structured data. Update or remove before production (docs/CONTENT_SOURCES.md).
+   */
+  googleRating: { value: '4,4', count: 69, checked: '11/2026' },
   originalSite: 'https://www.in-tek.fi/',
   maps: {
     embed: `https://maps.google.com/maps?q=${q}&z=16&output=embed`,

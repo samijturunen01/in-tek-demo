@@ -55,7 +55,7 @@ export function ServicePage({ id }: { id: ServiceId }) {
       <section className="on-light bg-paper text-graphite">
         <div className="wrap grid gap-12 py-20 lg:grid-cols-12 lg:items-center lg:gap-14 lg:py-24">
           <div className="lg:col-span-6" data-reveal>
-            <p className="eyebrow">Tunnistatko oireen?</p>
+            <p className="eyebrow">{s.id === 'ohjausyksikot' ? 'Korjauskohteet' : 'Tunnistatko oireen?'}</p>
             <h2 className="display-md mt-4">{s.listTitle}</h2>
             <ul className="mt-8 grid gap-3">
               {s.list.map((item) => (

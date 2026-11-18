@@ -1,0 +1,521 @@
+@import '@fontsource-variable/saira/wdth.css';
+@import '@fontsource-variable/instrument-sans/index.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
+@import 'tailwindcss';
+
+/*
+ * in-TEK – creative concept "Sytytystesti" (ignition self-test).
+ * Night-time instrument cluster: deep ink surfaces, warning telltales in amber/red
+ * that go dark once the fault is fixed, and in-TEK blue as the "all clear" backlight.
+ */
+@theme {
+  --color-ink: #091017;
+  --color-ink-2: #0e1821;
+  --color-ink-3: #13212d;
+  --color-line: #22323f;
+  --color-line-2: #2e4150;
+  --color-mist: #b9c6d1;
+  --color-fog: #8597a6;
+  --color-signal: #2ca7e0;
+  --color-signal-2: #5cc2f0;
+  --color-signal-deep: #0370a3;
+  --color-amber: #f5a524;
+  --color-alert: #ef5b5f;
+  --color-paper: #eef1f2;
+  --color-paper-2: #e2e7ea;
+  --color-chalk: #ffffff;
+  --color-graphite: #16212b;
+  --color-slate: #45545f;
+
+  --font-display: 'Saira Variable', 'Arial Narrow', system-ui, sans-serif;
+  --font-sans: 'Instrument Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 88px;
+  }
+  body {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-stretch: 86%;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-signal);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-ink);
+  }
+  a {
+    color: inherit;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1360px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+  @media (min-width: 768px) {
+    .wrap {
+      padding-inline: 40px;
+    }
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 12px;
+    top: -100px;
+    z-index: 100;
+    background: var(--color-signal);
+    color: var(--color-ink);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+  }
+  .skip-link:focus {
+    top: 12px;
+  }
+
+  /* Display type */
+  .display-xl {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-stretch: 78%;
+    font-size: clamp(2.45rem, 1.55rem + 3.4vw, 4.5rem);
+    line-height: 0.97;
+    letter-spacing: -0.018em;
+  }
+  .display-lg {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-stretch: 80%;
+    font-size: clamp(2.1rem, 1.5rem + 2.8vw, 4rem);
+    line-height: 1;
+  }
+  .display-md {
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-stretch: 84%;
+    font-size: clamp(1.6rem, 1.3rem + 1.3vw, 2.35rem);
+    line-height: 1.06;
+  }
+
+  /* Mono "readout" label, like text on a cluster display */
+  .readout {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-signal-2);
+  }
+  .eyebrow::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 2px;
+    background: currentColor;
+    box-shadow: 0 0 10px currentColor;
+  }
+  .on-light .eyebrow {
+    color: var(--color-signal-deep);
+  }
+  .on-light .eyebrow::before {
+    box-shadow: none;
+  }
+
+  .lead {
+    font-size: clamp(1.08rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.55;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 10px;
+    font-weight: 650;
+    font-size: 1rem;
+    line-height: 1.1;
+    text-decoration: none;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s,
+      box-shadow 0.25s,
+      transform 0.2s var(--ease-out-quart);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-signal {
+    background: var(--color-signal);
+    color: var(--color-ink);
+    box-shadow:
+      0 0 0 1px rgb(44 167 224 / 0.4),
+      0 8px 28px -10px rgb(44 167 224 / 0.75);
+  }
+  .btn-signal:hover {
+    background: var(--color-signal-2);
+    box-shadow:
+      0 0 0 1px rgb(92 194 240 / 0.6),
+      0 10px 34px -8px rgb(44 167 224 / 0.9);
+  }
+  .btn-ghost {
+    border: 1px solid var(--color-line-2);
+    color: var(--color-chalk);
+    background: rgb(255 255 255 / 0.02);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-signal);
+    background: rgb(44 167 224 / 0.08);
+  }
+  .btn-ink {
+    background: var(--color-graphite);
+    color: var(--color-chalk);
+  }
+  .btn-ink:hover {
+    background: #22313d;
+  }
+  .btn-outline-ink {
+    border: 1px solid rgb(22 33 43 / 0.28);
+    color: var(--color-graphite);
+  }
+  .btn-outline-ink:hover {
+    border-color: var(--color-signal-deep);
+    color: var(--color-signal-deep);
+  }
+  .btn .arrow {
+    transition: transform 0.25s var(--ease-out-quart);
+  }
+  .btn:hover .arrow,
+  .link-row:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .text-link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    text-decoration-color: rgb(44 167 224 / 0.6);
+  }
+  .text-link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid var(--color-line-2);
+    border-radius: 6px;
+    padding: 0.32rem 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 550;
+    color: var(--color-mist);
+    background: rgb(255 255 255 / 0.02);
+  }
+  .on-light .chip {
+    border-color: rgb(22 33 43 / 0.16);
+    color: var(--color-graphite);
+    background: var(--color-chalk);
+  }
+
+  /* Panels on dark */
+  .panel {
+    background: linear-gradient(180deg, var(--color-ink-3), var(--color-ink-2));
+    border: 1px solid var(--color-line);
+    border-radius: 18px;
+  }
+
+  /* Hairline "PCB trace" decorations */
+  .trace-h {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-line-2) 12%, var(--color-line-2) 88%, transparent);
+  }
+  .grid-dots {
+    background-image: radial-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .on-light.grid-dots,
+  .grid-dots-light {
+    background-image: radial-gradient(rgb(22 33 43 / 0.09) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Telltale glyph states */
+  .telltale {
+    color: var(--color-line-2);
+    transition:
+      color 0.35s,
+      filter 0.35s;
+  }
+  .telltale[data-tone='amber'].is-lit {
+    color: var(--color-amber);
+    filter: drop-shadow(0 0 6px rgb(245 165 36 / 0.65));
+  }
+  .telltale[data-tone='red'].is-lit {
+    color: var(--color-alert);
+    filter: drop-shadow(0 0 6px rgb(239 91 95 / 0.6));
+  }
+  .telltale[data-tone='blue'].is-lit,
+  .telltale.is-ok {
+    color: var(--color-signal);
+    filter: drop-shadow(0 0 6px rgb(44 167 224 / 0.6));
+  }
+
+  /* Form controls */
+  .field-label {
+    display: block;
+    font-weight: 650;
+    font-size: 0.97rem;
+    margin-bottom: 0.4rem;
+  }
+  .field-hint {
+    font-size: 0.86rem;
+    color: var(--color-slate);
+  }
+  .input {
+    width: 100%;
+    min-height: 3.1rem;
+    border-radius: 10px;
+    border: 1px solid rgb(22 33 43 / 0.22);
+    background: var(--color-chalk);
+    color: var(--color-graphite);
+    padding: 0.7rem 0.9rem;
+    font-size: 1rem;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+  .input:hover {
+    border-color: rgb(22 33 43 / 0.4);
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--color-signal-deep);
+    box-shadow: 0 0 0 3px rgb(44 167 224 / 0.35);
+  }
+  .input[aria-invalid='true'] {
+    border-color: #c02d33;
+    box-shadow: 0 0 0 1px #c02d33;
+  }
+  .field-error {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #b3262c;
+  }
+  .opt {
+    font-weight: 500;
+    color: var(--color-slate);
+    font-size: 0.86rem;
+  }
+  .req {
+    color: #b3262c;
+  }
+
+  /* Choice tiles (radio/checkbox styled) */
+  .choice {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid rgb(22 33 43 / 0.2);
+    border-radius: 10px;
+    background: var(--color-chalk);
+    color: var(--color-graphite);
+    font-weight: 600;
+    font-size: 0.96rem;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      background 0.2s,
+      box-shadow 0.2s;
+  }
+  .choice:hover {
+    border-color: rgb(22 33 43 / 0.42);
+  }
+  .choice:has(input:checked) {
+    border-color: var(--color-signal-deep);
+    background: #e6f4fb;
+    box-shadow: inset 0 0 0 1px var(--color-signal-deep);
+  }
+  .choice:has(input:focus-visible) {
+    outline: 3px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+  .choice input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+}
+
+/* ---------- Progressive reveals (never used on primary hero content) ---------- */
+.js [data-reveal]:not(.is-in) {
+  opacity: 0;
+  transform: translateY(22px);
+}
+.js [data-reveal] {
+  transition:
+    opacity 0.7s var(--ease-out-quart),
+    transform 0.8s var(--ease-out-quart);
+  transition-delay: var(--d, 0s);
+}
+/* Clip reveals animate the CHILDREN: a fully clipped target never intersects for IntersectionObserver. */
+.js [data-reveal='clip']:not(.is-in) {
+  opacity: 1;
+  transform: none;
+}
+.js [data-reveal='clip']:not(.is-in) > * {
+  clip-path: inset(0 0 100% 0);
+}
+.js [data-reveal='clip'] > * {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1.1s var(--ease-out-quart);
+  transition-delay: var(--d, 0s);
+}
+.js [data-inview] .sweep-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.1s var(--ease-out-quart) 0.15s;
+}
+.js [data-inview].is-in .sweep-line {
+  transform: scaleX(1);
+}
+
+.trace-anim path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+.js [data-inview]:not(.is-in) .trace-anim path {
+  stroke-dashoffset: 1;
+}
+.js [data-inview] .trace-anim path {
+  transition: stroke-dashoffset 1.4s var(--ease-out-quart) 0.2s;
+}
+
+.no-motion [data-reveal],
+.no-motion [data-reveal]:not(.is-in),
+.no-motion [data-reveal='clip'] > * {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+  transition: none !important;
+}
+.no-motion [data-inview] .sweep-line {
+  transform: none !important;
+}
+.no-motion [data-inview] .trace-anim path {
+  stroke-dashoffset: 0 !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Homepage intro: ignition self-test (initial state before JS runs) ---------- */
+.intro-pending .cluster .cl-telltale {
+  color: var(--color-amber);
+}
+.intro-pending .cluster .cl-telltale[data-tone='red'] {
+  color: var(--color-alert);
+}
+.intro-pending .cluster .cl-wordmark,
+.intro-pending .cluster .cl-status {
+  opacity: 0;
+}
+.intro-pending .cluster .cl-tick {
+  opacity: 0.25;
+}
+
+/* ---------- Print: huoltolähete only ---------- */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .print-sheet,
+  .print-sheet * {
+    visibility: visible;
+  }
+  .print-sheet {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    display: block !important;
+  }
+}
+.print-sheet {
+  display: none;
+}

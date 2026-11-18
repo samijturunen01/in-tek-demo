@@ -1,0 +1,13 @@
+node_modules
+dist
+test-results
+playwright-report
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Raw research downloads and unused originals (not for publication)
+source-assets/raw/
+source-assets/excluded/
